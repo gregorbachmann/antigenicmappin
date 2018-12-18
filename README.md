@@ -62,3 +62,33 @@ Relies heavily on the function **smacofSym** from the package **smacof**.
 * **plot**: Boolean, the plot is displayed if TRUE.
 * **label**: Boolean, labels are displayed in the plot if TRUE.
 * **real**: Boolean, indicating whether data has time and name attribut.
+
+**Returns**:
+* Embedding returned by **smacofSym**
+* Plot object
+
+
+#### sammon
+Relies heavily on function **sammon** from the package **MASS**.
+
+**Arguments**:
+
+* **data**: A list in the explained format.
+* **dim**: The desired embedding dimension
+* **plot**: Boolean, the plot is displayed if TRUE
+* **label**: Boolean, labels are displayed in the plot if TRUE
+
+**Returns**:
+* Embedding returned by **sammon**
+### HelpFunctions
+#### generate_shape_space_coord
+
+Function to get random initial configurations for sammon.
+
+**Arguments**
+* **n.v**: Number of viruses
+* **n.a**: Number of antibodies
+* **k**: Dimension that produced data should have
+
+**Returns**
+* Matrix containing the coordinates for antibodies and strains as rows.
