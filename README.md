@@ -51,7 +51,7 @@ Relies heavily on the function **isomap** from **vegan**.
 
 This function calculates the embedding by filling out the incomplete matrix using the neighbourhood graph. Note that **nn** needs to be chosen high enough in order to avoid fragmentation of the data.
 
-####mdsvis
+#### mdsvis
 Relies heavily on the function **smacofSym** from the package **smacof**.
 
 **Arguments**:
@@ -59,5 +59,6 @@ Relies heavily on the function **smacofSym** from the package **smacof**.
 * **dim**: The desired embedding dimension
 * **method**: One of "ratio", "interval", "mspline" or "ordinal" as discussed in the project.
 * **init**: "torgerson" for a deterministic initial configuration or "random" for a random one.
-* **plot**: Boolean, the plot is displayed if TRUE
-* **label**: Boolean, labels are displayed in the plot if TRUE
+* **plot**: Boolean, the plot is displayed if TRUE.
+* **label**: Boolean, labels are displayed in the plot if TRUE.
+* **real**: Boolean, indicating whether data has time and name attribut.
