@@ -37,6 +37,7 @@ I mainly worked with data in form of a list, containing the following:
 ### EmbeddingAlgos
 #### isomapvis
 Relies heavily on the function **isomap** from **vegan**.
+This function calculates the embedding by filling out the incomplete matrix using the neighbourhood graph. Note that **nn** needs to be chosen high enough in order to avoid fragmentation of the data.
 
 **Arguments**:
 * **data**: A list in the explained format.
@@ -49,10 +50,10 @@ Relies heavily on the function **isomap** from **vegan**.
 * Embedding returned by isomap
 * Plot object
 
-This function calculates the embedding by filling out the incomplete matrix using the neighbourhood graph. Note that **nn** needs to be chosen high enough in order to avoid fragmentation of the data.
 
 #### mdsvis
 Relies heavily on the function **smacofSym** from the package **smacof**.
+This function calculates the embedding using the classical metric scaling approaches discussed in the project.
 
 **Arguments**:
 * **data**: A list in the explained format.
@@ -70,7 +71,7 @@ Relies heavily on the function **smacofSym** from the package **smacof**.
 
 #### sammon
 Relies heavily on function **sammon** from the package **MASS**.
-
+This function calculates the embedding for the Sammon approach as discussed in the project.
 **Arguments**:
 
 * **data**: A list in the explained format.
@@ -92,3 +93,59 @@ Function to get random initial configurations for sammon.
 
 **Returns**
 * Matrix containing the coordinates for antibodies and strains as rows.
+
+#### calc_dist
+Function that calculates the standard distance matrix given coordinates of the strains and antibodies.
+
+**Arguments**:
+* **coord**: Matrix containing coordinates of antibodies and strains
+* **n.v**: Number of viruses
+* **n.a**: Number of antibodies
+
+**Returns**:
+* Standard distance matrix
+
+#### sym_matrix
+Function that calculates the symmetrized distance matrix
+
+**Arguments**:
+* **dist_matrix**: Standard distance matrix
+
+**Returns**:
+* Symmetrized distance matrix
+
+### Read_In_File
+#### read_in
+Function to read in the data from a csv file and returning it in the format as discussed above.
+
+**Arguments**:
+* **link**: String indicating the link to the csv file on your machine
+* **n.v**: Number of viruses
+* **n.a**: Number of antibodies
+* **ordering** 0 if csv is ordered w.r.t. virus and 1 if ordered w.r.t. antibody
+
+**Returns**:
+* List of the form as disussed above
+
+### ClusterCreator
+#### create_test_clusters
+This function implements the first step in the first framework in my project. Namely clusters are created in a high dimensional hypercube.
+
+**Arguments**
+* **numclusters**: Number of clusters desired
+* **dim**: Dimension in which clusters should be formed.
+* **numpoints**: Vector of length numcluster containing the number of samples belonging to each cluster.
+* **plot**: TRUE if plot of the clusters should be produced, only works for dim=2.
+
+**Returns**:
+* List consisting of virus and antibody coordinates, cluster centers and memberships
+* Plot of clusters if plot=TRUE
+
+#### preprocess
+Function to calculate the standard and symmetrized distance matrix for the cluster data produced by create_test_clusters
+
+**Arguments**:
+* cluster: List of the form returned by create_test_clusters
+
+**Returns**:
+* The two distances matrices as a list
