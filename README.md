@@ -143,7 +143,7 @@ This function implements the first step in the first framework in my project. Na
 **Returns**:
 * List consisting of virus and antibody coordinates, cluster centers and memberships
 * Plot of clusters if plot=TRUE
-
+---
 #### preprocess
 Function to calculate the standard and symmetrized distance matrix for the cluster data produced by create_test_clusters
 
@@ -178,9 +178,21 @@ Function to simulate IC-50 values using Ornstein-Uhlenbeck processes on **random
 * **treeSize**: Number of tips/strains of the random trees
 * **numA**: Number of antibodies
 * **clusterIndexA** : A vector of length numA. For each antibody, the vector contains the corresponding cluster assignment.
-* **plot**: Bolean indicating whether plot of trait values for clusters should be produced
+* **plot**: Boolean indicating whether plot of trait values for clusters should be produced
 * **h,w**: Parameters passed to par(mfrow=c(w,h)) for plotting
 
 **Returns**:
 * List containing the standard distance matrix and the true memberships
 ---
+### EvaluateAlgos
+#### test_algos_artifical
+This function evaluates the algorithms using the first framework. It uses the function **create_test_clusters** to produce test data and then calculates and clusters the embeddings. The package **clusterCrit** is used to assign an accuracy score for each clustering.
+
+**Arguments**:
+* **dim**: Dimension which the cluster data should have
+* **numTests**: Number of tests to run
+* **numPoints**: Number of strains and antibodies combined
+* **method**: Method you want to evaluate. One of "ratio", "interval", "mspline", "ordinal" or "Isomap"
+
+**Returns**:
+* Vector of length numtests containing for each run the **Czekanowski-Dice score** of each corresponding clustering
