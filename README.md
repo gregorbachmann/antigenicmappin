@@ -34,6 +34,7 @@ I mainly worked with data in form of a list, containing the following:
 * **Symmetrized distance matrix**: The symmetrized version of size (M+N)x(M+N), with zeros on the diagonal and NAs for strain and antibody pairs.
 * **Isolation time**: Vector of size M+N, containing isolation time measured in weeks for each antibody and strain (optional)
 * **Labels**: Names of strains and antibodies (optional)
+---
 ### EmbeddingAlgos
 #### isomapvis
 Relies heavily on the function **isomap** from **vegan**.
@@ -51,6 +52,7 @@ This function calculates the embedding by filling out the incomplete matrix usin
 * Plot object
 
 
+---
 #### mdsvis
 Relies heavily on the function **smacofSym** from the package **smacof**.
 This function calculates the embedding using the classical metric scaling approaches discussed in the project.
@@ -67,9 +69,9 @@ This function calculates the embedding using the classical metric scaling approa
 **Returns**:
 * Embedding returned by **smacofSym**
 * Plot object
-
-
+---
 #### sammon
+
 Relies heavily on function **sammon** from the package **MASS**.
 This function calculates the embedding for the Sammon approach as discussed in the project.
 **Arguments**:
@@ -81,6 +83,7 @@ This function calculates the embedding for the Sammon approach as discussed in t
 
 **Returns**:
 * Embedding returned by **sammon**
+---
 ### HelpFunctions
 #### generate_shape_space_coord
 
@@ -93,7 +96,7 @@ Function to get random initial configurations for sammon.
 
 **Returns**
 * Matrix containing the coordinates for antibodies and strains as rows.
-
+---
 #### calc_dist
 Function that calculates the standard distance matrix given coordinates of the strains and antibodies.
 
@@ -104,7 +107,7 @@ Function that calculates the standard distance matrix given coordinates of the s
 
 **Returns**:
 * Standard distance matrix
-
+---
 #### sym_matrix
 Function that calculates the symmetrized distance matrix
 
@@ -113,7 +116,7 @@ Function that calculates the symmetrized distance matrix
 
 **Returns**:
 * Symmetrized distance matrix
-
+---
 ### Read_In_File
 #### read_in
 Function to read in the data from a csv file and returning it in the format as discussed above.
@@ -126,7 +129,7 @@ Function to read in the data from a csv file and returning it in the format as d
 
 **Returns**:
 * List of the form as disussed above
-
+---
 ### ClusterCreator
 #### create_test_clusters
 This function implements the first step in the first framework in my project. Namely clusters are created in a high dimensional hypercube.
@@ -149,3 +152,35 @@ Function to calculate the standard and symmetrized distance matrix for the clust
 
 **Returns**:
 * The two distances matrices as a list
+---
+#### create_OU_clusters_given_tree
+Uses the package **phytools** to simulate the OU process.
+Implements the second framework from my project.
+Function to simulate IC-50 values using Ornstein-Uhlenbeck processes on a **given** phylogenetic tree.
+
+**Arguments**:
+* **tree**: A phylogenetic tree object in the Newick format
+* **numA**: Number of antibodies
+* **numClusters**: Number of genetic clusters in the tree
+* **clusterIndexTree**: A vector of length #tips. For each tip/strain, the vector contains the corresponding cluster assignment.
+* **clusterIndexA** : A vector of length numA. For each antibody, the vector contains the corresponding cluster assignment.
+
+**Returns**:
+* Standard distance matrix
+---
+
+#### create_OU_clusters
+Uses the package **phytools** to simulate the OU process and to draw random trees.
+Function to simulate IC-50 values using Ornstein-Uhlenbeck processes on **randomly** created phylogenetic trees.
+
+**Argument**
+* **numClusters**: Number of clusters desired
+* **treeSize**: Number of tips/strains of the random trees
+* **numA**: Number of antibodies
+* **clusterIndexA** : A vector of length numA. For each antibody, the vector contains the corresponding cluster assignment.
+* **plot**: Bolean indicating whether plot of trait values for clusters should be produced
+* **h,w**: Parameters passed to par(mfrow=c(w,h)) for plotting
+
+**Returns**:
+* List containing the standard distance matrix and the true memberships
+---
